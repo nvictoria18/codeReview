@@ -14,4 +14,4 @@ function convertToObject(str) {
   return obj;
 }
 
-console.log(convertToObject('abc')); // { a: { b: { c: {} } } }
+console.log(convertToObject('abc'));
