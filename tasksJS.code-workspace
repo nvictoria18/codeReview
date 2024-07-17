@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "tasksJS",
+			"path": "."
+		},
+		{
+			"name": "codereview",
+			"path": "../../codereview"
+		}
+	],
+	"settings": {}
+}
