@@ -1,5 +1,8 @@
 // 25
 
+
+
+
 const result = uniqueNonConsecutiveElements("hello");
 console.log(result);
 

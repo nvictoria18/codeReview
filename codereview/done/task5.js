@@ -1,5 +1,7 @@
 // 5
 
+
+
 Number.prototype.add = function(value) {
   return this + value;
 };

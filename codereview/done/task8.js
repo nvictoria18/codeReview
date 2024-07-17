@@ -1,5 +1,7 @@
 // 8
 
+
+
 Array.prototype.myReverse = function() {
   if (this.length <= 1) {
     return this;

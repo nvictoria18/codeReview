@@ -1,5 +1,8 @@
 // 27
 
+
+
+
 type PromiseResult<T> = T extends Promise<infer U> ? U : T;
 
 interface PromiseAllSettledResult<T> {

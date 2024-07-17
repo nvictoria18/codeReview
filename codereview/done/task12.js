@@ -1,5 +1,7 @@
 // 12
 
+
+
 function createBoard(x = 5, y = 5) {
   let white = "_";
   let black = "#";

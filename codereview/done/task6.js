@@ -1,5 +1,7 @@
 // 6
 
+
+
 const first = [1,3,3,5];
 const second = [3,5,5,6];
 

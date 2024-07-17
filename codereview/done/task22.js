@@ -1,5 +1,8 @@
 // 22
 
+
+
+
 function inc() {
   let count = 0;
   return function() {

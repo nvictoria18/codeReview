@@ -1,5 +1,8 @@
 // 23
 
+
+
+
 let obj = {};
 
 function createCopy(data) {

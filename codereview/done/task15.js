@@ -1,5 +1,7 @@
 // 15
 
+
+
 Array.prototype.mapPolifile = function (callback, arg) {
   const newArr = [];
   for (let i = 0; i < this.length; i++) {
