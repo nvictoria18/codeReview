@@ -1,17 +1,15 @@
 // 16
 
+// function aclean(arr) {
+//   let map = new Map();
 
+//   for (let word of arr) {
+//     let sortedWord = word.toLowerCase().split('').sort().join('');
+//     map.set(sortedWord, word);
+//   }
 
-function aclean(arr) {
-  let map = new Map();
+//   return Array.from(map.values());
+// }
 
-  for (let word of arr) {
-    let sortedWord = word.toLowerCase().split('').sort().join('');
-    map.set(sortedWord, word);
-  }
-
-  return Array.from(map.values());
-}
-
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
-console.log( aclean(arr) );
+// let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+// console.log( aclean(arr) );

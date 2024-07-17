@@ -1,66 +1,63 @@
 // 27
 
+// type PromiseResult<T> = T extends Promise<infer U> ? U : T;
 
+// interface PromiseAllSettledResult<T> {
+//   status: 'fulfilled';
+//   value: T;
+// }
 
+// interface PromiseAllSettledRejectedResult {
+//   status: 'rejected';
+//   reason: any;
+// }
 
-type PromiseResult<T> = T extends Promise<infer U> ? U : T;
+// type PromiseAllSettledResults<T> =
+//   | PromiseAllSettledResult<T>
+//   | PromiseAllSettledRejectedResult;
 
-interface PromiseAllSettledResult<T> {
-  status: 'fulfilled';
-  value: T;
-}
+// function promiseAll<T>(promises: Array<T | Promise<T>>): Promise<Array<PromiseResult<T>>> {
+//   return new Promise((resolve, reject) => {
+//     const results: Array<PromiseResult<T>> = [];
 
-interface PromiseAllSettledRejectedResult {
-  status: 'rejected';
-  reason: any;
-}
+//     promises.forEach((promise, index) => {
+//       Promise.resolve(promise).then(
+//         (value) => {
+//           results[index] = value as PromiseResult<T>;
 
-type PromiseAllSettledResults<T> =
-  | PromiseAllSettledResult<T>
-  | PromiseAllSettledRejectedResult;
+//           if (results.length === promises.length) {
+//             resolve(results);
+//           }
+//         },
+//         (error) => {
+//           reject(error);
+//         },
+//       );
+//     });
+//   });
+// }
 
-function promiseAll<T>(promises: Array<T | Promise<T>>): Promise<Array<PromiseResult<T>>> {
-  return new Promise((resolve, reject) => {
-    const results: Array<PromiseResult<T>> = [];
+// function promiseAllSettled<T>(promises: Array<T | Promise<T>>): Promise<Array<PromiseAllSettledResults<T>>> {
+//   return new Promise((resolve) => {
+//     const results: Array<PromiseAllSettledResults<T>> = [];
 
-    promises.forEach((promise, index) => {
-      Promise.resolve(promise).then(
-        (value) => {
-          results[index] = value as PromiseResult<T>;
+//     promises.forEach((promise, index) => {
+//       Promise.resolve(promise).then(
+//         (value) => {
+//           results[index] = { status: 'fulfilled', value: value as T };
 
-          if (results.length === promises.length) {
-            resolve(results);
-          }
-        },
-        (error) => {
-          reject(error);
-        },
-      );
-    });
-  });
-}
+//           if (results.length === promises.length) {
+//             resolve(results);
+//           }
+//         },
+//         (reason) => {
+//           results[index] = { status: 'rejected', reason };
 
-function promiseAllSettled<T>(promises: Array<T | Promise<T>>): Promise<Array<PromiseAllSettledResults<T>>> {
-  return new Promise((resolve) => {
-    const results: Array<PromiseAllSettledResults<T>> = [];
-
-    promises.forEach((promise, index) => {
-      Promise.resolve(promise).then(
-        (value) => {
-          results[index] = { status: 'fulfilled', value: value as T };
-
-          if (results.length === promises.length) {
-            resolve(results);
-          }
-        },
-        (reason) => {
-          results[index] = { status: 'rejected', reason };
-
-          if (results.length === promises.length) {
-            resolve(results);
-          }
-        },
-      );
-    });
-  });
-}
+//           if (results.length === promises.length) {
+//             resolve(results);
+//           }
+//         },
+//       );
+//     });
+//   });
+// }

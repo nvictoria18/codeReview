@@ -1,17 +1,15 @@
 // 17 
 
+// function debounce(func, wait) {
+//   let timeout;
 
+//   return function (...args) {
+//     const context = this;
 
-function debounce(func, wait) {
-  let timeout;
+//     clearTimeout(timeout);
 
-  return function (...args) {
-    const context = this;
-
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      func.apply(context, args);
-    }, wait);
-  };
-}
+//     timeout = setTimeout(() => {
+//       func.apply(context, args);
+//     }, wait);
+//   };
+// }

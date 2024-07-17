@@ -1,7 +1,5 @@
 // 27
 
-
-
 function promiseAll(promises) {
     return new Promise(function (resolve, reject) {
         var results = [];
