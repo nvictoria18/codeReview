@@ -1,7 +1,5 @@
 // 14
 
-
-
 function matchCharacters(...str) {
   const firstStringChars = {};
   for (let char of str[0]) {

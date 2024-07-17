@@ -1,13 +1,9 @@
 // 22
 
-
-
-
 function inc() {
   let count = 0;
   return function() {
-    count++;
-    return count;
+    return ++count;
   }
 }
 

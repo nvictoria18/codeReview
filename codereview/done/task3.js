@@ -1,19 +1,13 @@
 // 3
 
-
-
 function convertToObject(str) {
-  const obj = {};
-  let currentObj = obj;
-  for (let i = 0; i < str.length; i++) {
-    const char = str[i];
-    if (!currentObj[char]) {
-      currentObj[char] = {};
-    }
-    currentObj = currentObj[char];
-  }
-
+  let obj = {};
+  let arr = str.split("");
+  arr.reduce((acc, el) => {
+    acc[el] = {};
+    return acc[el];
+  }, obj);
   return obj;
 }
 
-console.log(convertToObject('abc'));
+console.log(convertToObject('abc')); // { a: { b: { c: {} } } }

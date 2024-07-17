@@ -1,7 +1,5 @@
 // 9
 
-
-
 let string = "aaabbcaff"
 
 function getNumberCharacters(str) {

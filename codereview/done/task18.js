@@ -1,8 +1,5 @@
 // 18 
 
-
-
-
 function throttle(func, wait) {
   let timeout;
   let previous = 0;

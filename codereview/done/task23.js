@@ -1,8 +1,5 @@
 // 23
 
-
-
-
 let obj = {};
 
 function createCopy(data) {
@@ -12,8 +9,7 @@ function createCopy(data) {
     age: data.age,
     setting: {...setting}
   };
-  const title = `new copy ${setting.title}`;
-  copy.setting.title = title;
+  copy.setting.title = `new copy ${setting.title}`;
   return copy;
 }
 
