@@ -13,21 +13,26 @@
 //   return copy;
 // }
 
-let obj = {};
+const obj = {
+  meta: '',
+  age: '',
+  setting: {
+    title: true
+  }
+};
 
 function createCopy(data) {
   // cоздаем константу setting, чтобы гарантировать наличие свойства title
-  const setting = data.setting || { title: '' };
 
   const copy = {
     meta: data.meta,
     age: data.age,
     // Создаем копию объекта setting
-    setting: {...setting} 
+    setting: data.setting
   };
 
   // Изменяем свойство title в скопированном объекте
-  copy.setting.title = `new copy ${setting.title}`;
+  copy.setting.title = `new copy ${data.setting.title}`;
 
   return copy;
 }
