@@ -1,35 +1,24 @@
 // 27
-
+let __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 function promiseAll(promises) {
-    return new Promise(function (resolve, reject) {
-        var results = [];
-        promises.forEach(function (promise, index) {
-            Promise.resolve(promise).then(function (value) {
-                results[index] = value;
-                if (results.length === promises.length) {
-                    resolve(results);
-                }
-            }, function (error) {
-                reject(error);
-            });
+    return promises.reduce(function (accumulator, promise) {
+        return accumulator.then(function (results) {
+            return Promise.resolve(promise).then(function (value) { return __spreadArray(__spreadArray([], results, true), [value], false); });
         });
-    });
+    }, Promise.resolve([]));
 }
 function promiseAllSettled(promises) {
-    return new Promise(function (resolve) {
-        var results = [];
-        promises.forEach(function (promise, index) {
-            Promise.resolve(promise).then(function (value) {
-                results[index] = { status: 'fulfilled', value: value };
-                if (results.length === promises.length) {
-                    resolve(results);
-                }
-            }, function (reason) {
-                results[index] = { status: 'rejected', reason: reason };
-                if (results.length === promises.length) {
-                    resolve(results);
-                }
-            });
+    return promises.reduce(function (accumulator, promise) {
+        return accumulator.then(function (results) {
+            return Promise.resolve(promise).then(function (value) { return __spreadArray(__spreadArray([], results, true), [{ status: "fulfilled", value: value }], false); }, function (reason) { return __spreadArray(__spreadArray([], results, true), [{ status: "rejected", reason: reason }], false); });
         });
-    });
+    }, Promise.resolve([]));
 }
