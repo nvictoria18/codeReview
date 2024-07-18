@@ -19,7 +19,7 @@ const test = [
   ['098', [33, 44, [[12], 1, [56]]]]
 ];
 
-console.log(flat(test)) // должно вернуть [1, 2, 3, 4, 5, 11, 9, { one: 1, bar : 'pop', foo: 33, name: 'oleg', olga: true, in: 'in' }, '098', 33, 44, 12, 1, 56]
+// должно вернуть [1, 2, 3, 4, 5, 11, 9, { one: 1, bar : 'pop', foo: 33, name: 'oleg', olga: true, in: 'in' }, '098', 33, 44, 12, 1, 56]
 
 const test2 = {
   foo: {
@@ -42,32 +42,54 @@ const test2 = {
   },
 } 
 
-console.log(flat(test2)) // вернет {one: 1, bar: 'pop', foo2: 33, name: 'oleg', olga: true, in: 'in', abc: [1, 2, 3, 4, 5, 11, 9, '098', 33, 44, 12, 1, 56]},
+// вернет {one: 1, bar: 'pop', foo2: 33, name: 'oleg', olga: true, in: 'in', abc: [1, 2, 3, 4, 5, 11, 9, '098', 33, 44, 12, 1, 56]},
 
-function flat(obj, depth = 1) {
-  if (depth <= 0) {
-    return obj;
-  }
+function flat(input) {
+  let result = [];
 
-  if (Array.isArray(obj)) {
-    return obj.flatMap(item => flat(item, depth - 1));
-  }
-
-  if (typeof obj === 'object') {
-    const result = {};
-
-    for (const key in obj) {
-      const value = flat(obj[key], depth - 1);
-
-      if (Array.isArray(value)) {
-        result[key] = value;
+  function flattenArray(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      let item = arr[i];
+      if (Array.isArray(item)) {
+        flattenArray(item);
+      } else if (typeof item === 'object' && item !== null) {
+        result.push(flatObject(item));
       } else {
-        Object.assign(result[key] || (result[key] = {}), value);
+        result.push(item);
       }
     }
-
-    return result;
   }
 
-  return obj;
+  function flatObject(obj) {
+    let flatObj = {};
+    for (let key in obj) {
+      let value = obj[key];
+      if (Array.isArray(value)) {
+        flatObj[key] = [];
+        flattenArray(value);
+        flatObj[key] = result;
+        result = [];
+      } else if (typeof value === 'object' && value !== null) {
+        flatObj = {...flatObj, ...flatObject(value)};
+      } else {
+        flatObj[key] = value;
+      }
+    }
+    return flatObj;
+  }
+
+  if (Array.isArray(input)) {
+    flattenArray(input);
+    return result;
+  } else if (typeof input === 'object' && input !== null) {
+    return flatObject(input);
+  } else {
+    throw new Error('Input must be an array or an object');
+  }
 }
+console.log(flat(test2));
+console.log(flat(test));
+
+
+
+

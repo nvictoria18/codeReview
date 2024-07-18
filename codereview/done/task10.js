@@ -36,19 +36,11 @@ const tree = {
 function sum(obj, key) {
   let total = 0;
 
-  if (Array.isArray(obj)) {
-    obj.forEach(item => {
-      total += sum(item, key);
-    });
-  } else if (obj !== null && typeof obj === 'object') { 
-    if (key in obj) {
-      total += obj[key];
-    }
-
-    for (const prop in obj) {
-      if (typeof obj[prop] === 'object') {
-        total += sum(obj[prop], key);
-      }
+  if (obj && typeof obj === 'object') {
+    const { [key]: value, ...rest } = obj;
+    total += value || 0;
+    for (const prop in rest) {
+      total += sum(rest[prop], key);
     }
   }
 

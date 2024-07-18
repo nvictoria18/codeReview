@@ -4,18 +4,17 @@ function throttle(func, wait) {
   let timeout;
   let previous = 0;
 
-  return function (...args) {
-    const context = this;
+  return (...args) => {
     const current = Date.now();
 
     if (current - previous >= wait) {
-      func.apply(context, args);
+      func(...args);
       previous = current;
     } else {
       clearTimeout(timeout);
 
       timeout = setTimeout(() => {
-        func.apply(context, args);
+        func(...args);
         previous = Date.now();
       }, wait);
     }

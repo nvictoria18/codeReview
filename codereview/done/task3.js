@@ -1,8 +1,8 @@
 // 3
 
 function convertToObject(str) {
-  let obj = {};
-  let arr = str.split("");
+  const obj = {};
+  const arr = str.split("");
   arr.reduce((acc, el) => {
     acc[el] = {};
     return acc[el];

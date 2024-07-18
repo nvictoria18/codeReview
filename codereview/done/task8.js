@@ -1,12 +1,13 @@
 // 8
 
 Array.prototype.myReverse = function() {
-  if (this.length <= 1) {
-    return this;
+  let left = 0;
+  let right = this.length - 1;
+  while (left < right) {
+    [this[left], this[right]] = [this[right], this[left]];
+    left++;
+    right--;
   }
-  const last = this.pop();
-  this.myReverse();
-  this.unshift(last);
   return this;
 };
 

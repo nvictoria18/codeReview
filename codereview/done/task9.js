@@ -3,15 +3,15 @@
 let string = "aaabbcaff"
 
 function getNumberCharacters(str) {
-    let result = {}
+    const result = {}
     let newStr = ""
     for (let i = 0; i < str.length; i++) {
-        if (result[str[i]] !== undefined) ++result[str[i]];
-        else result[str[i]] = 1;
+        result[str[i]] !== undefined ? ++result[str[i]] : result[str[i]] = 1;
     }
     for (let key in result) {
-        newStr = newStr + key + result[key];
+        newStr += key + result[key];
     }
-    console.log(newStr)
+    return(newStr)
 }
-getNumberCharacters(string)
+
+console.log(getNumberCharacters(string));
